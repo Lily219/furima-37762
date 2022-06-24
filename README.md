@@ -15,8 +15,8 @@
 | birthday             | date      | null: false                |
 
 ### Association
-- has_many :items
-- has_many :comments 
+- has_many :items 
+- belongs_to :order
 
 
 ## items テーブル
@@ -35,34 +35,33 @@
 
 ### Association
 - belongs_to :user
-- has_many :comments
-
+- belongs_to :order
 
 ## orders テーブル
 
 | Column               | Type        | Options                        |
 |----------------------|-------------|--------------------------------|
-| user_id              | references  | null: false, foreign_key: true |
-| item_id              | references  | null: false, foreign_key: true |
+| user                 | references  | null: false, foreign_key: true |
+| item                 | references  | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :delivery_add
+- has_one :addresses
 
 
 
 
-## delivery_adds テーブル
+## addresses テーブル
 
 | Column               | Type        | Options                        |
 |----------------------|-------------|--------------------------------|
-| postcord             | string      | null: false                    | 
-| prefectures_id       | string      | null: false                    |
-| municipality         | string      | null: false                    |
-| block_num            | string      | null: false                    |
-| building             | string      |                                |
-| phone_num            | string      | null: false                    |
+| postcord             | string      | null: false, foreign_key: true                     | 
+| aria_id              | integer     | null: false, foreign_key: true                     |
+| municipality         | string      | null: false, foreign_key: true                     |
+| block_num            | string      | null: false, foreign_key: true                     |
+| building             | string      |foreign_key: true                                   |
+| phone_num            | string      | null: false, foreign_key: true                     |
 
 
 ### Association
