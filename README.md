@@ -3,17 +3,16 @@
 
 ## users テーブル
 
-| Column               | Type      | Options      |
-|----------------------|-----------|--------------|
-| nickname             | string    | null: false  | 
-| email                | string    | null: false  |
-| password             | string    | null: false  |
-| encrypted_password   | string    | null: false  |
-| first_name           | string    | null: false  |
-| last_name            | string    | null: false  |
-| first_name_kana      | string    | null: false  |
-| last_name_kana       | string    | null: false  |
-| birthday             | date      | null: false  |
+| Column               | Type      | Options                    |
+|----------------------|-----------|----------------------------|
+| nickname             | string    | null: false                | 
+| email                | string    | null: false, unique: true  |
+| encrypted_password   | string    | null: false                |
+| first_name           | string    | null: false                |
+| last_name            | string    | null: false                |
+| first_name_kana      | string    | null: false                |
+| last_name_kana       | string    | null: false                |
+| birthday             | date      | null: false                |
 
 ### Association
 - has_many :items
@@ -27,54 +26,44 @@
 | title                | string      | null: false                    | 
 | price                | integer     | null: false                    |
 | user                 | references  | null: false, foreign_key: true |
-| category             | string      | null: false                    |
-| condition            | string      | null: false                    |
-| delivery_fee         | string      | null: false                    |
-| aria                 | string      | null: false                    |
-| delivery_day         | date        | null: false                    |
+| category_id          | integer     | null: false                    |
+| condition_id         | integer     | null: false                    |
+| delivery_fee_id      | integer     | null: false                    |
+| aria_id              | integer     | null: false                    |
+| delivery_day_id      | integer     | null: false                    |
+| description          | text        | null: false                    |
 
 ### Association
-- belongs_to :users
-- has_many :comment
+- belongs_to :user
+- has_many :comments
 
 
-## commnets テーブル
+## orders テーブル
 
 | Column               | Type        | Options                        |
 |----------------------|-------------|--------------------------------|
-| content              | text        | null: false                    | 
-| user                 | references  | null: false, foreign_key: true |
-| item                 | references  | null: false, foreign_key: true |
+| user_id              | references  | null: false, foreign_key: true |
+| item_id              | references  | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items
-
-
-## pays テーブル
-
-| Column               | Type        | Options                        |
-|----------------------|-------------|--------------------------------|
-| card_num             | integer     | null: false                    | 
-| exp_date             | integer     | null: false                    |
-| security_num         | integer     | null: false                    |
-
-
-### Association
+- belongs_to :user
+- belongs_to :item
 - has_one :delivery_add
 
 
-## delivery_add テーブル
+
+
+## delivery_adds テーブル
 
 | Column               | Type        | Options                        |
 |----------------------|-------------|--------------------------------|
-| postcord             | integer     | null: false                    | 
-| prefectures          | storing     | null: false                    |
-| municipality         | storing     | null: false                    |
-| block_num            | integer     | null: false                    |
-| buillding            | storing     |                                |
-| phone_num            | integer     | null: false                    |
+| postcord             | string      | null: false                    | 
+| prefectures_id       | string      | null: false                    |
+| municipality         | string      | null: false                    |
+| block_num            | string      | null: false                    |
+| building             | string      |                                |
+| phone_num            | string      | null: false                    |
 
 
 ### Association
-- belongs_to :pays
+- belongs_to :order
