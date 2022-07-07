@@ -73,6 +73,10 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
        end
+       it 'userが紐付いていなければ出品できない' do
+        @item.user = @user_id
+       end
+       
     end
   end
 end
