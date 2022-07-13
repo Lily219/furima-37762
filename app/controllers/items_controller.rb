@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, expect: [:show, :index]
+  before_action :authenticate_user!, only: [:new, :edit, :update]
 
   def index
     @items = Item.order('created_at DESC')
