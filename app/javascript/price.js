@@ -1,3 +1,4 @@
+window.addEventListener('load', price);
 function price (){
   const itemPrice  = document.getElementById("item-price");
   itemPrice.addEventListener("keyup", () => {
@@ -7,4 +8,3 @@ function price (){
     profit.innerHTML = Math.floor(itemPrice.value - Math.floor(itemPrice.value * 0.1));
   });
 }
-window.addEventListener('load', price);
