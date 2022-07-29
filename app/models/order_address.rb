@@ -1,7 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :postcode, :area_id, :municipality, :block_num, :building, :phone_num, :order_id, :item_id, :user_id
-  attr_accessor :token
+  attr_accessor :postcode, :area_id, :municipality, :block_num, :building, :phone_num, :order_id, :item_id, :user_id, :token
 
   validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
 
